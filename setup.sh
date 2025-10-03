@@ -56,7 +56,7 @@ PDONE
 
 PYELL Installing dependencies
 # install dependencies
-pkg install -y wget curl
+pkg install -y wget curl git
 PDONE
 
 PYELL Removing old font if exists
@@ -69,19 +69,15 @@ PDONE
 
 PYELL Installing other packages
 for package in "${PKGS[@]}"; do
-yes | pkg install "$package"
+  yes | pkg install "$package"
 done
 PDONE
 
-PYELL Setting up shell
-mkdir -p ~/.config/fish
-wget -qO ~/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/staging/.config/starship.toml
-touch ~/.config/fish/config.fish
-echo 'set -g fish_greeting
-set -x TERM xterm-256color
-set PATH $PATH ~/.local/bin
-starship init fish | source
-' | tee ~/.config/fish/config.fish
+PYELL Setting up dotfiles
+git clone https://github.com/rvsmooth/termux-configs.git "$HOME"/.config
+PDONE
+
+PYELL Changing shell to fish
 chsh -s fish
 PDONE
 

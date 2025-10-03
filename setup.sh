@@ -74,6 +74,7 @@ done
 PDONE
 
 PYELL Setting up dotfiles
+rm -rf "$HOME"/.config
 git clone https://github.com/rvsmooth/termux-configs.git "$HOME"/.config
 PDONE
 

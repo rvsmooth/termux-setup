@@ -48,7 +48,8 @@ PDONE() {
 
 PYELL Updating packages
 # update packages
-pkg update && pkg upgrade -y
+pkg update
+yes | pkg upgrade
 PDONE
 
 PYELL Installing dependencies
@@ -71,7 +72,7 @@ PDONE
 PYELL Setting up shell
 mkdir "$TERM_DIR"/.config
 mkdir "$TERM_DIR"/.config/fish
-wget -qO "$TERM_DIR"/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/main/.config/starship.toml
+wget -qO "$TERM_DIR"/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/staging/.config/starship.toml
 touch ~/.config/fish/config.fish
 echo 'set -g fish_greeting
 set -x TERM xterm-256color
@@ -79,8 +80,10 @@ set PATH $PATH ~/.local/bin
 starship init fish | source
 ' | tee ~/.config/fish/config.fish
 chsh -s fish
-fish
 PDONE
 
 # reload termux
 am broadcast --user 0 -a com.termux.app.reload_style com.termux
+
+# launch fish
+fish

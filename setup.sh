@@ -73,8 +73,13 @@ mkdir "$TERM_DIR"/.config
 mkdir "$TERM_DIR"/.config/fish
 wget -qO "$TERM_DIR"/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/main/.config/starship.toml
 touch ~/.config/fish/config.fish
-echo 'starship init fish | source' >~/.config/fish/config.fish
+echo 'set -g fish_greeting
+set -x TERM xterm-256color
+set PATH $PATH ~/.local/bin
+starship init fish | source
+' | tee ~/.config/fish/config.fish
 chsh -s fish
+fish
 PDONE
 
 # reload termux

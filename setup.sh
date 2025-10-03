@@ -13,77 +13,71 @@ WHITE='\033[0;37m'
 # Variables
 TERM_DIR="${HOME}/.termux"
 DEF_FONT="${TERM_DIR}/font.ttf"
+CONFIGS="${HOME}/.config"
+
 # Color Functions
-PRED() {
+__pred() {
   echo -e "${RED}=> $@${RESET}"
 }
 
-PGREEN() {
+__pgreen() {
   echo -e "${GREEN}=> $@${RESET}"
 }
 
-PYELL() {
+__pyellow() {
   echo -e "${YELLOW}=> $@${RESET}"
 }
 
-PBLUE() {
-  echo -e "${BLUE}=> $@${RESET}"
+__pdone() {
+  sleep 1 && __pgreen 'Done<=' && echo && sleep 1
 }
 
-PMAG() {
-  echo -e "${MAGENTA}=> $@${RESET}"
-}
+# package array
+PKGS=(
+  android-tools
+  fastfetch
+  fish
+  neovim
+  starship
+)
 
-PCYAN() {
-  echo -e "${CYAN}=> $@${RESET}"
-}
-
-ewhite() {
-  echo -e "${WHITE}=> $@${RESET}"
-}
-
-PDONE() {
-  sleep 1 && PGREEN Done... && echo && sleep 1
-}
-
-PKGS=(fish fastfetch android-tools starship neovim fastfetch)
-
-PYELL Updating packages
 # update packages
+__pyellow Updating packages
 pkg update
 yes | pkg upgrade
-PDONE
+__pdone
 
-PYELL Installing dependencies
 # install dependencies
+__pyellow Installing dependencies
 pkg install -y wget curl git
-PDONE
+__pdone
 
-PYELL Removing old font if exists
+__pyellow Removing old font if exists
 [ -e "$DEF_FONT" ] && rm "$DEF_FONT"
-PDONE
+__pdone
 
-PYELL Installing jetbrainsmono font
-wget -qO "$DEF_FONT" https://github.com/rvsmooth/termux-setup/raw/refs/heads/master/fonts/JetBrainsMonoNerdFontMono-Medium.ttf
-PDONE
+__pyellow Installing jetbrainsmono font
+wget -qO "$DEF_FONT" \
+  https://github.com/rvsmooth/termux-setup/raw/refs/heads/master/fonts/JetBrainsMonoNerdFontMono-Medium.ttf
+__pdone
 
-PYELL Installing other packages
+__pyellow Installing other packages
 for package in "${PKGS[@]}"; do
   yes | pkg install "$package"
 done
-PDONE
+__pdone
 
-PYELL Setting up dotfiles
-[ -d $HOME/.config ] && rm -rf "$HOME"/.config
-git clone https://github.com/rvsmooth/termux-configs.git "$HOME"/.config
-PDONE
+__pyellow Setting up dotfiles
+[ -d "$CONFIGS" ] && rm -rf "$CONFIGS"
+git clone https://github.com/rvsmooth/termux-configs.git "$CONFIGS"
+__pdone
 
-PYELL Changing shell to fish
+__pyellow Changing shell to fish
 chsh -s fish
-PDONE
+__pdone
+
+# start fish shell
+fish
 
 # reload termux
 am broadcast --user 0 -a com.termux.app.reload_style com.termux
-
-# launch fish
-fish

@@ -72,6 +72,7 @@ PYELL Setting up shell
 mkdir "$TERM_DIR"/.config
 mkdir "$TERM_DIR"/.config/fish
 wget -qO "$TERM_DIR"/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/main/.config/starship.toml
+touch ~/.config/fish/config.fish
 echo 'starship init fish | source' >~/.config/fish/config.fish
 chsh -s fish
 PDONE

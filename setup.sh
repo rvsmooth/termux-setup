@@ -46,11 +46,7 @@ PDONE() {
   sleep 1 && PGREEN Done... && echo && sleep 1
 }
 
-PKGS="
-fish
-fastfetch
-android-tools
-starship"
+PKGS=(fish fastfetch android-tools starship neovim fastfetch)
 
 PYELL Updating packages
 # update packages
@@ -72,7 +68,7 @@ wget -qO "$DEF_FONT" https://github.com/rvsmooth/termux-setup/raw/refs/heads/mas
 PDONE
 
 PYELL Installing other packages
-for package in "$PKGS"; do
+for package in "${PKGS[@]}"; do
 yes | pkg install "$package"
 done
 PDONE

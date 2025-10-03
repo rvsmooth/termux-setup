@@ -65,7 +65,7 @@ wget -qO "$DEF_FONT" https://github.com/rvsmooth/termux-setup/raw/refs/heads/mas
 PDONE
 
 PYELL Installing other packages
-pkg install -y platform-tools starship fish
+pkg install -y android-tools starship fish || true
 PDONE
 
 PYELL Setting up shell

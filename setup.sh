@@ -46,6 +46,12 @@ PDONE() {
   sleep 1 && PGREEN Done... && echo && sleep 1
 }
 
+PKGS="
+fish
+fastfetch
+android-tools
+starship"
+
 PYELL Updating packages
 # update packages
 pkg update
@@ -66,7 +72,9 @@ wget -qO "$DEF_FONT" https://github.com/rvsmooth/termux-setup/raw/refs/heads/mas
 PDONE
 
 PYELL Installing other packages
-pkg install -y android-tools starship fish || true
+for package in "$PKGS"; do
+yes | pkg install "$package"
+done
 PDONE
 
 PYELL Setting up shell

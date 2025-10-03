@@ -34,6 +34,7 @@ __pdone() {
 
 # package array
 PKGS=(
+  aria2
   android-tools
   fastfetch
   fish

@@ -70,9 +70,8 @@ pkg install -y android-tools starship fish || true
 PDONE
 
 PYELL Setting up shell
-mkdir "$TERM_DIR"/.config
-mkdir "$TERM_DIR"/.config/fish
-wget -qO "$TERM_DIR"/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/staging/.config/starship.toml
+mkdir -p ~/.config/fish
+wget -qO ~/.config/starship.toml https://raw.githubusercontent.com/rvsmooth/dotfiles/refs/heads/staging/.config/starship.toml
 touch ~/.config/fish/config.fish
 echo 'set -g fish_greeting
 set -x TERM xterm-256color

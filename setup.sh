@@ -40,6 +40,7 @@ PKGS=(
   fish
   neovim
   starship
+  yt-dlp
 )
 
 # update packages
@@ -71,6 +72,11 @@ __pdone
 __pyellow Setting up dotfiles
 [ -d "$CONFIGS" ] && rm -rf "$CONFIGS"
 git clone https://github.com/rvsmooth/termux-configs.git "$CONFIGS"
+__pdone
+
+__pyellow Installing mutagen
+__pyellow needed for yt-dlp
+pip install mutagen
 __pdone
 
 __pyellow Changing shell to fish
